@@ -42,7 +42,7 @@ export default function ContactPage() {
   };
 
   return (
-    <section className="relative bg-[#050507] px-6 sm:px-12 lg:px-20 py-24 overflow-hidden">
+    <section id="contact" className="relative bg-[#050507] px-6 sm:px-12 lg:px-20 py-24 overflow-hidden">
 
       {/* TOASTER */}
       <Toaster position="top-right" reverseOrder={false} />
