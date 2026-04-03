@@ -1,109 +1,179 @@
 import { motion } from "framer-motion";
-import { FaDatabase, FaNodeJs, FaReact, FaServer, FaCertificate } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import {
+  FaDatabase,
+  FaNodeJs,
+  FaReact,
+  FaServer,
+} from "react-icons/fa";
 
 export default function MernSkills() {
-  const navigate = useNavigate();
-
   const skills = [
-    { name: "MongoDB", icon: <FaDatabase />, level: 90, desc: "NoSQL database expertise for scalable apps" },
-    { name: "Express.js", icon: <FaServer />, level: 85, desc: "Fast and robust backend APIs" },
-    { name: "React.js", icon: <FaReact />, level: 95, desc: "Dynamic and responsive UI development" },
-    { name: "Node.js", icon: <FaNodeJs />, level: 88, desc: "Event-driven, non-blocking server logic" },
+    {
+      name: "MongoDB",
+      icon: <FaDatabase />,
+      level: 90,
+      tag: "Database",
+      desc: "Scalable NoSQL design, indexing & aggregation pipelines.",
+    },
+    {
+      name: "Express.js",
+      icon: <FaServer />,
+      level: 85,
+      tag: "Backend",
+      desc: "Robust APIs, middleware & secure authentication systems.",
+    },
+    {
+      name: "React.js",
+      icon: <FaReact />,
+      level: 95,
+      tag: "Frontend",
+      desc: "Dynamic UI, reusable components & smooth UX.",
+    },
+    {
+      name: "Node.js",
+      icon: <FaNodeJs />,
+      level: 88,
+      tag: "Server",
+      desc: "Async backend systems & scalable architecture.",
+    },
   ];
 
   return (
-    <section className="relative bg-[#0A0A0A] px-6 sm:px-16 py-32 overflow-hidden">
-      {/* GREEN GLOW */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#39FF14]/10 blur-[180px] rounded-full" />
+    <section id="skills" className="relative bg-[#050507] px-6 sm:px-10 lg:px-20 py-24 overflow-hidden">
+
+      {/* GRID BG */}
+      <div
+        className="absolute inset-0 opacity-20"
+        style={{
+          backgroundImage: `
+          linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)
+          `,
+          backgroundSize: "50px 50px",
+        }}
+      />
+
+      {/* MULTI GLOW */}
+      <div className="absolute top-[-120px] left-[20%] w-[500px] h-[500px] bg-purple-600/20 blur-[160px] rounded-full" />
+      <div className="absolute bottom-[-120px] right-[20%] w-[500px] h-[500px] bg-cyan-500/20 blur-[160px] rounded-full" />
 
       {/* HEADER */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        className="max-w-5xl mx-auto text-center mb-24 relative z-10"
-      >
-        <p className="uppercase tracking-[0.35em] text-xs text-[#39FF14] mb-4">
-          MERN STACK EXPERTISE
+      <div className="relative z-10 text-center max-w-3xl mx-auto mb-20">
+        <p className="text-xs tracking-[0.4em] text-cyan-400 mb-3">
+          MY EXPERTISE
         </p>
 
-        <h2 className="text-white text-4xl sm:text-5xl font-bold leading-tight">
-          Full <span className="text-[#39FF14]">MERN Stack Mastery</span>
+        <h2 className="text-white text-3xl sm:text-5xl font-bold leading-tight">
+          Crafting Powerful <br />
+          <span className="bg-gradient-to-r from-purple-500 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+            MERN Stack Systems
+          </span>
         </h2>
 
-        <p className="text-[#B0B0B0] mt-6 leading-relaxed max-w-3xl mx-auto text-sm sm:text-base">
-          Demonstrating high-level proficiency across MongoDB, Express.js, React, and Node.js with interactive visuals and modern UI components. Our team ensures scalable, secure, and high-performing applications.
+        <p className="text-gray-400 mt-4 text-sm sm:text-base">
+          Focused on performance, scalability and real-world solutions with modern development standards.
         </p>
-      </motion.div>
+      </div>
 
-      {/* SKILLS GRID */}
-      <div className="max-w-5xl mx-auto grid gap-8 lg:grid-cols-2 relative z-10">
+      {/* SKILLS */}
+      <div className="relative z-10 max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
         {skills.map((skill, i) => (
           <motion.div
             key={i}
-            initial={{ opacity: 0, x: -80 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ delay: i * 0.15 }}
-            className="flex flex-col gap-4 p-6 bg-[#111] rounded-2xl shadow-[0_0_60px_rgba(57,255,20,0.2)] hover:shadow-[0_0_80px_rgba(57,255,20,0.4)] transition-all duration-500"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            whileHover={{ y: -10, scale: 1.05 }}
+            transition={{ delay: i * 0.1 }}
+            className="group relative rounded-2xl p-[1px] bg-gradient-to-r from-purple-500 via-cyan-400 to-blue-500 animate-[pulse_6s_linear_infinite]"
           >
-            <div className="flex items-center gap-4">
-              <div className="text-[#39FF14] text-3xl">{skill.icon}</div>
+            {/* INNER */}
+            <div className="relative h-full rounded-2xl bg-[#0B0B10]/90 p-6 flex flex-col items-center text-center border border-white/10 backdrop-blur-xl shadow-[0_0_40px_rgba(0,0,0,0.6)] group-hover:shadow-[0_0_60px_rgba(168,85,247,0.3)] transition">
 
-              <div className="flex flex-col">
-                <span className="text-white text-xl font-semibold">{skill.name}</span>
-                <span className="text-[#B0B0B0] text-sm">{skill.desc}</span>
+              {/* TAG */}
+              <span className="absolute top-3 right-3 text-[10px] px-2 py-1 rounded-full bg-white/5 border border-white/10 text-cyan-300">
+                {skill.tag}
+              </span>
+
+              {/* ICON */}
+              <div className="text-3xl mb-4 text-cyan-400 group-hover:scale-110 transition">
+                {skill.icon}
               </div>
 
-              <div className="ml-auto flex items-center gap-1 text-[#39FF14]">
-                <FaCertificate />
-                <span className="text-sm font-medium">Pro</span>
+              {/* CIRCLE */}
+              <div className="relative w-24 h-24 mb-4">
+                <svg className="w-full h-full rotate-[-90deg]">
+                  <circle
+                    cx="50%"
+                    cy="50%"
+                    r="40"
+                    stroke="#1f1f1f"
+                    strokeWidth="8"
+                    fill="none"
+                  />
+                  <motion.circle
+                    cx="50%"
+                    cy="50%"
+                    r="40"
+                    stroke="url(#gradient)"
+                    strokeWidth="8"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeDasharray={251}
+                    initial={{ strokeDashoffset: 251 }}
+                    whileInView={{
+                      strokeDashoffset: 251 - (251 * skill.level) / 100,
+                    }}
+                    transition={{ duration: 1.8 }}
+                    className="drop-shadow-[0_0_10px_rgba(34,211,238,0.6)]"
+                  />
+                </svg>
+
+                {/* % */}
+                <div className="absolute inset-0 flex items-center justify-center text-white font-bold text-sm">
+                  {skill.level}%
+                </div>
               </div>
-            </div>
 
-            {/* Progress Bar */}
-            <div className="w-full h-5 bg-[#1E1E1E] rounded-full overflow-hidden mt-2">
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: `${skill.level}%` }}
-                transition={{ duration: 1.5, ease: "easeOut" }}
-                className="h-5 bg-[#39FF14] rounded-full shadow-[0_0_25px_rgba(57,255,20,0.5)]"
-              />
-            </div>
+              {/* TITLE */}
+              <h3 className="text-white text-lg font-semibold mb-1">
+                {skill.name}
+              </h3>
 
-            {/* BUTTON */}
-            <div className="mt-4 flex gap-4">
-              <motion.button
-                onClick={() => navigate("/mern-service")}
-                whileHover={{ scale: 1.05, boxShadow: "0px 0px 15px #39FF14" }}
-                whileTap={{ scale: 0.95 }}
-                className="px-4 py-2 bg-[#39FF14] text-black font-semibold rounded-xl transition-all duration-300"
-              >
-                Learn More
-              </motion.button>
+              {/* DESC */}
+              <p className="text-gray-400 text-xs leading-relaxed opacity-80 group-hover:opacity-100">
+                {skill.desc}
+              </p>
+
+              {/* BOTTOM GLOW LINE */}
+              <div className="mt-5 h-[2px] w-0 group-hover:w-full bg-gradient-to-r from-purple-500 to-cyan-400 transition-all duration-500"></div>
+
             </div>
           </motion.div>
         ))}
+
+        {/* SVG */}
+        <svg width="0" height="0">
+          <defs>
+            <linearGradient id="gradient">
+              <stop stopColor="#a855f7" />
+              <stop offset="1" stopColor="#22d3ee" />
+            </linearGradient>
+          </defs>
+        </svg>
       </div>
 
       {/* CTA */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        className="relative z-10 max-w-5xl mx-auto text-center mt-32"
-      >
-        <h3 className="text-white text-2xl sm:text-3xl font-semibold">
-          Ready to launch your MERN project with UK-standard quality?
+      <div className="relative z-10 text-center mt-24">
+        <h3 className="text-white text-xl sm:text-2xl font-semibold">
+          Let’s Build Something Exceptional
         </h3>
 
-        <motion.button
-          onClick={() => navigate("/mern-service")}
-          whileHover={{ scale: 1.05, boxShadow: "0px 0px 20px #39FF14" }}
-          whileTap={{ scale: 0.95 }}
-          className="mt-6 px-8 py-3 bg-[#39FF14] text-black font-bold rounded-2xl text-lg transition-all duration-300"
-        >
-          Get Started
-        </motion.button>
-      </motion.div>
+        <button className="mt-6 px-8 py-3 rounded-xl bg-gradient-to-r from-purple-500 via-cyan-400 to-blue-500 text-white font-semibold hover:scale-105 transition shadow-lg">
+          Start a Project
+        </button>
+      </div>
+
     </section>
   );
 }

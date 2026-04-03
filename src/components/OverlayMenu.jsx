@@ -1,11 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { FiX } from "react-icons/fi";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 
 export default function OverlayMenu({ isOpen, onClose }) {
-  const [showServices, setShowServices] = useState(false);
-
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -16,6 +13,12 @@ export default function OverlayMenu({ isOpen, onClose }) {
   }, []);
 
   const origin = isMobile ? "90% 6%" : "50% 6%";
+
+  const navItems = [
+    { name: "Home", link: "#home" },
+    { name: "Why Choose", link: "#why" },
+    { name: "Our Skills", link: "#skills" },
+  ];
 
   return (
     <AnimatePresence>
@@ -31,7 +34,7 @@ export default function OverlayMenu({ isOpen, onClose }) {
           {/* CLOSE BUTTON */}
           <button
             onClick={onClose}
-            className="absolute top-6 right-6 text-[#39FF14] hover:text-[#32CD32]
+            className="absolute top-6 right-6 text-[#c084fc] hover:text-[#6a35ff]
                        text-3xl transition z-[1100]"
             aria-label="Close Menu"
           >
@@ -41,96 +44,39 @@ export default function OverlayMenu({ isOpen, onClose }) {
           {/* MENU LINKS */}
           <ul className="space-y-8 text-center w-full z-[1050]">
 
-            {/* HOME */}
-            <motion.li
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-            >
-              <Link
-                to="/"
-                onClick={onClose}
-                className="text-2xl font-semibold text-white hover:text-[#39FF14] transition"
+            {navItems.map((item, i) => (
+              <motion.li
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 * (i + 1) }}
               >
-                Home
-              </Link>
-            </motion.li>
+                <a
+                  href={item.link}
+                  onClick={onClose}
+                  className="text-2xl font-semibold text-white hover:text-[#c084fc] transition"
+                >
+                  {item.name}
+                </a>
+              </motion.li>
+            ))}
 
-            {/* ABOUT */}
-            <motion.li
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              <Link
-                to="/about"
-                onClick={onClose}
-                className="text-2xl font-semibold text-white hover:text-[#39FF14] transition"
-              >
-                About Go Digital
-              </Link>
-            </motion.li>
-
-            {/* SERVICES */}
-            <motion.li
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-            >
-              <button
-                onClick={() => setShowServices((prev) => !prev)}
-                className="text-2xl font-semibold text-white hover:text-[#39FF14] transition"
-              >
-                Services
-              </button>
-
-              <AnimatePresence>
-                {showServices && (
-                  <motion.ul
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.25 }}
-                    className="mt-4 space-y-4 bg-[#0F0F0F]/95 backdrop-blur-xl
-                               border border-[#39FF14]/30
-                               rounded-2xl px-6 py-4
-                               shadow-[0_0_30px_rgba(57,255,20,0.2)]"
-                  >
-                    {[
-                      { label: "MERN SERVICES", path: "/mern-service" },
-                      { label: "DIGITAL MARKETING", path: "/digital-marketing" },
-                      { label: "SOCIAL MEDIA MANAGEMENT", path: "/social-media" },
-                      { label: "AI & IT SOLUTIONS", path: "/ai-solutions" },
-                    ].map((item, i) => (
-                      <li key={i}>
-                        <a
-                          href={item.path}
-                          onClick={onClose}
-                          className="block text-center text-[#B0B0B0] hover:text-[#39FF14] transition font-medium"
-                        >
-                          {item.label}
-                        </a>
-                      </li>
-                    ))}
-                  </motion.ul>
-                )}
-              </AnimatePresence>
-            </motion.li>
-
-            {/* CONTACT */}
+            {/* CONTACT BUTTON */}
             <motion.li
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
+              className="mt-6"
             >
-              <Link
-                to="/contact"
-                onClick={onClose}
-                className="text-2xl font-semibold text-white hover:text-[#39FF14] transition"
-              >
-                Contact
-              </Link>
+              <a href="#contact" onClick={onClose}>
+                <button className="px-8 py-3 rounded-xl bg-gradient-to-r 
+                from-[#6a35ff] via-[#c084fc] to-[#00c2cb] 
+                text-white font-semibold shadow-lg hover:scale-105 transition">
+                  Contact
+                </button>
+              </a>
             </motion.li>
+
           </ul>
         </motion.div>
       )}

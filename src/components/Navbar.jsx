@@ -1,23 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import OverlayMenu from "./OverlayMenu.jsx";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { Link } from "react-router-dom";
-import logo from "../assets/gglogo.png"; // ✅ logo import
+import logo from "../assets/rrd.png";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [visible, setVisible] = useState(true);
   const [forceVisible, setForceVisible] = useState(false);
-  const [servicesDropdown, setServicesDropdown] = useState(false);
 
   const lastScrollY = useRef(0);
-
-  const services = [
-    { name: "MERN STACK DEVELOPMENT", path: "/mern-service" },
-    { name: "DIGITAL MARKETING & SEO", path: "/digital-marketing" },
-    { name: "SOCAILMEDIA MANAGEMENT", path: "/social-media" },
-    { name: "AI & IT SOLUTIONS", path: "/ai-solutions" },
-  ];
 
   useEffect(() => {
     const homeSection = document.querySelector("#home");
@@ -52,92 +43,66 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [forceVisible, menuOpen]);
 
+  const navItems = [
+    { name: "Home", link: "#home" },
+    { name: "Why Choose", link: "#why" },
+    { name: "Our Skills", link: "#skills" },
+  ];
+
   return (
     <>
       <nav
         className={`fixed top-0 left-0 w-full z-50 transition-transform duration-300
         ${visible ? "translate-y-0" : "-translate-y-full"}
-        bg-[#0A0A0A]/90 backdrop-blur-xl border-b border-[#39FF14]/20`}
+        bg-[#0F0F0F]/95 backdrop-blur-xl border-b border-[#2F2F2F]`}
       >
         <div className="relative max-w-7xl mx-auto h-20 flex items-center justify-between px-4 sm:px-6">
 
           {/* LOGO */}
-          <Link
-            to="/"
+          <a
+            href="#home"
             className="absolute left-[10px] top-1/2 -translate-y-1/2 lg:static lg:translate-y-0 flex items-center"
           >
             <img
               src={logo}
-              alt="Go Digital Logo"
-              className="h-20 w-auto object-contain
-              drop-shadow-[0_0_10px_rgba(57,255,20,0.5)]
-              hover:scale-105 transition"
+              alt="Logo"
+              className="h-20 w-auto object-contain hover:scale-105 transition"
             />
-          </Link>
+          </a>
 
           {/* DESKTOP LINKS */}
           <div
-            className="hidden lg:flex items-center gap-10 text-[#B0B0B0] text-sm
+            className="hidden lg:flex items-center gap-10 text-[#D1D5DB] text-sm
             absolute left-1/2 -translate-x-1/2"
           >
-            {["Home", "About"].map((item) => (
-              <Link
-                key={item}
-                to={`/${item === "Home" ? "" : item.toLowerCase()}`}
+            {navItems.map((item, i) => (
+              <a
+                key={i}
+                href={item.link}
                 className="relative group hover:text-white transition"
               >
-                {item}
-                <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#39FF14] transition-all duration-300 group-hover:w-full" />
-              </Link>
+                {item.name}
+                <span className="absolute left-0 -bottom-1 w-0 h-0.5 
+                bg-gradient-to-r from-[#6a35ff] via-[#c084fc] to-[#00c2cb] 
+                transition-all duration-300 group-hover:w-full" />
+              </a>
             ))}
-
-            {/* SERVICES DROPDOWN */}
-            <div
-              className="relative"
-              onMouseEnter={() => setServicesDropdown(true)}
-              onMouseLeave={() => setServicesDropdown(false)}
-            >
-              <button className="relative group flex items-center gap-1 hover:text-white transition">
-                Services
-                <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#39FF14] transition-all duration-300 group-hover:w-full" />
-              </button>
-
-              {servicesDropdown && (
-                <div className="absolute top-full left-0 mt-3 w-64
-                bg-[#121212] backdrop-blur-xl
-                border border-[#1E1E1E]
-                rounded-2xl shadow-[0_0_30px_rgba(57,255,20,0.15)]
-                overflow-hidden">
-                  {services.map((service, i) => (
-                    <Link
-                      key={i}
-                      to={service.path}
-                      className="block px-6 py-4 text-[#B0B0B0]
-                        hover:bg-[#39FF14]/10 hover:text-[#39FF14] transition"
-                    >
-                      {service.name}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
           </div>
 
           {/* RIGHT SIDE */}
           <div className="flex items-center gap-4 ml-auto">
-            <Link
-              to="/contact"
+            <a
+              href="#contact"
               className="hidden sm:inline-flex px-6 py-2 rounded-xl
-              bg-[#39FF14] text-black font-semibold
-              shadow-[0_0_20px_rgba(57,255,20,0.4)]
-              hover:scale-105 transition"
+              bg-gradient-to-r from-[#6a35ff] via-[#c084fc] to-[#00c2cb]
+              text-white font-semibold transition"
             >
-              Contact Us
-            </Link>
+              Contact
+            </a>
 
             <button
               onClick={() => setMenuOpen(true)}
-              className="text-[#39FF14] text-3xl lg:hidden hover:scale-110 transition"
+              className="text-[#c084fc] text-3xl lg:hidden hover:scale-110 transition"
               aria-label="Open Menu"
             >
               <GiHamburgerMenu />

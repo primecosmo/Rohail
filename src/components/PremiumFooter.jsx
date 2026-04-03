@@ -1,107 +1,122 @@
 import { motion } from "framer-motion";
-import { FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
 
 export default function PremiumFooter() {
+
   const quickLinks = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "MERN STACK DEVELOPMENT", path: "/mern-service" },
-    { name: "DIGITAL MARKETING & SEO", path: "/digital-marketing" },
-    { name: "SOCIALMEDIA MANAGEMENT", path: "/social-media" },
-    { name: "AI & IT SOLUTIONS", path: "/ai-solutions" },
+    { name: "Home", link: "#home" },
+    { name: "Why Choose", link: "#why" },
+    { name: "Our Skills", link: "#skills" },
+    { name: "Contact", link: "#contact" },
   ];
 
   const socialLinks = [
     { icon: FaLinkedin, link: "https://linkedin.com" },
-    { icon: FaTwitter, link: "https://twitter.com" },
-    { icon: FaEnvelope, link: "mailto:hello@godigital.com" },
+    { icon: FaGithub, link: "https://github.com" },
+    { icon: FaEnvelope, link: "mailto:rohaildev@gmail.com" },
   ];
 
   return (
-    <footer className="relative bg-[#0A0A0A] text-white pt-24 pb-12 overflow-hidden">
+    <footer className="relative bg-[#050507] text-white pt-20 pb-10 overflow-hidden">
 
-      {/* GLOW BACKGROUNDS */}
-      <div className="absolute -top-32 -left-32 w-[500px] h-[500px] bg-[#39FF14]/10 blur-[180px] rounded-full" />
-      <div className="absolute -bottom-32 -right-32 w-[500px] h-[500px] bg-[#00E5FF]/10 blur-[180px] rounded-full" />
+      {/* BACKGROUND GRID */}
+      <div
+        className="absolute inset-0 opacity-20"
+        style={{
+          backgroundImage: `
+          linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)
+          `,
+          backgroundSize: "60px 60px",
+        }}
+      />
 
-      {/* CTA */}
+      {/* GLOW */}
+      <div className="absolute -top-32 left-1/4 w-[400px] h-[400px] bg-purple-600/20 blur-[140px] rounded-full" />
+      <div className="absolute -bottom-32 right-1/4 w-[400px] h-[400px] bg-cyan-500/20 blur-[140px] rounded-full" />
+
+      {/* CTA CARD */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        className="relative z-10 max-w-7xl mx-auto px-6 sm:px-16 flex flex-col md:flex-row justify-between items-center 
-        bg-[#121212]/80 backdrop-blur-xl rounded-xl py-6 mb-16 border border-[#1E1E1E]"
+        className="relative z-10 max-w-6xl mx-auto px-6 sm:px-10 flex flex-col md:flex-row justify-between items-center 
+        bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 mb-16"
       >
         <div className="text-center md:text-left mb-4 md:mb-0">
-          <h3 className="text-xl sm:text-2xl font-semibold text-[#39FF14]">
-            Ready to elevate your business?
+          <h3 className="text-xl sm:text-2xl font-semibold">
+            Let’s Build Something <span className="text-cyan-400">Amazing</span>
           </h3>
-          <p className="text-[#B0B0B0] mt-1 text-sm">
-            Let’s simplify complexity, strengthen execution, and scale with clarity.
+          <p className="text-gray-400 text-sm mt-1">
+            Have an idea? I can turn it into a powerful digital product.
           </p>
         </div>
 
-        <Link to="/contact">
-          <button className="mt-3 md:mt-0 px-8 py-3 bg-[#39FF14] text-black font-semibold rounded-xl 
-          shadow-[0_0_20px_rgba(57,255,20,0.5)] hover:scale-105 transition">
-            Contact Us
+        <a href="#contact">
+          <button className="mt-3 md:mt-0 px-7 py-3 rounded-xl bg-gradient-to-r from-purple-500 via-cyan-400 to-blue-500 
+          text-white font-semibold hover:scale-105 transition shadow-lg">
+            Get In Touch
           </button>
-        </Link>
+        </a>
       </motion.div>
 
-      {/* GRID */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-16 grid grid-cols-1 md:grid-cols-3 gap-12">
+      {/* MAIN GRID */}
+      <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
 
         {/* BRAND */}
         <div className="space-y-4">
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-[#39FF14] to-[#00E5FF] bg-clip-text text-transparent">
-            GO DIGITAL
+          <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-500 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+            Rohail Dev
           </h2>
-          <p className="text-[#B0B0B0] text-sm leading-relaxed">
-            Helping businesses grow with modern digital strategies, smart execution, and powerful online presence.
+          <p className="text-gray-400 text-sm leading-relaxed">
+            MERN Stack Developer building fast, scalable web apps with modern UI and strong backend systems.
           </p>
         </div>
 
         {/* LINKS */}
-        <div className="space-y-3">
-          <h3 className="text-white font-semibold text-lg">Quick Links</h3>
+        <div>
+          <h3 className="text-white font-semibold mb-4">Quick Links</h3>
           <ul className="space-y-2">
-            {quickLinks.map((link, idx) => (
-              <li key={idx}>
-                <Link
-                  to={link.path}
-                  className="text-[#B0B0B0] hover:text-[#39FF14] transition relative group"
+            {quickLinks.map((item, i) => (
+              <li key={i}>
+                <a
+                  href={item.link}
+                  className="relative text-gray-400 hover:text-cyan-400 transition group"
                 >
-                  {link.name}
-                  <span className="absolute -bottom-0.5 left-0 w-0 h-[2px] bg-[#39FF14] group-hover:w-full transition-all rounded-full" />
-                </Link>
+                  {item.name}
+                  <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-gradient-to-r from-purple-500 to-cyan-400 group-hover:w-full transition-all"></span>
+                </a>
               </li>
             ))}
           </ul>
         </div>
 
         {/* SOCIAL */}
-        <div className="space-y-4">
-          <h3 className="font-semibold text-white text-lg">Connect</h3>
-          <div className="flex items-center gap-5 text-[#B0B0B0]">
-            {socialLinks.map((item, idx) => (
+        <div>
+          <h3 className="text-white font-semibold mb-4">Connect</h3>
+
+          <div className="flex gap-4">
+            {socialLinks.map((item, i) => (
               <motion.a
-                key={idx}
+                key={i}
                 href={item.link}
                 target="_blank"
-                whileHover={{ y: -3, scale: 1.2 }}
-                className="hover:text-[#39FF14] transition"
+                whileHover={{ scale: 1.2, y: -3 }}
+                className="p-3 rounded-xl bg-white/5 border border-white/10 hover:border-cyan-400/40 transition"
               >
-                <item.icon size={22} />
+                <item.icon className="text-gray-300 hover:text-cyan-400" size={18} />
               </motion.a>
             ))}
           </div>
+
+          <p className="text-gray-500 text-sm mt-4">
+            rohail.codes@gmail.com
+          </p>
         </div>
       </div>
 
       {/* BOTTOM */}
-      <div className="mt-16 border-t border-[#1E1E1E] pt-6 text-center text-[#777] text-sm relative z-10">
-        &copy; {new Date().getFullYear()} GO DIGITAL. All rights reserved.
+      <div className="relative z-10 mt-16 border-t border-white/10 pt-6 text-center text-gray-500 text-sm">
+        © {new Date().getFullYear()} Rohail Dev — All Rights Reserved.
       </div>
     </footer>
   );
