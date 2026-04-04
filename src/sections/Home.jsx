@@ -54,17 +54,24 @@ export default function Home() {
           </p>
 
           {/* BUTTONS */}
+          {/* BUTTONS */}
           <div className="mt-8 flex gap-4 flex-wrap">
-            <button className="px-7 py-3 rounded-xl font-semibold text-white 
-              bg-gradient-to-r from-[#6a35ff] via-[#c084fc] to-[#00c2cb] 
-              shadow-lg hover:scale-105 transition">
+            <a
+              href="#contact"
+              className="px-7 py-3 rounded-xl font-semibold text-white 
+      bg-gradient-to-r from-[#6a35ff] via-[#c084fc] to-[#00c2cb] 
+      shadow-lg hover:scale-105 transition"
+            >
               Start Project
-            </button>
+            </a>
 
-            <button className="px-7 py-3 rounded-xl border border-[#2F2F2F] text-white 
-              hover:border-[#c084fc] hover:text-[#c084fc] transition">
-              Methodology
-            </button>
+            <a
+              href="#skills"
+              className="px-7 py-3 rounded-xl border border-[#2F2F2F] text-white 
+      hover:border-[#c084fc] hover:text-[#c084fc] transition"
+            >
+              View More
+            </a>
           </div>
         </div>
 
